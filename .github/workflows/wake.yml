@@ -1,0 +1,12 @@
+name: wake
+on:
+  schedule:
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - run: |
+          for i in 1 2 3; do curl -s -m 60 -o /dev/null -w '%{http_code}\n' https://8787-agqw5vtoqv5idrta3xqagppm5e.instabox.tech/ && break; sleep 10; done
